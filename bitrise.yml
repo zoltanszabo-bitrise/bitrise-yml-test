@@ -130,12 +130,9 @@ workflows:
     envs:
     - FOO: BAZ
     steps:
+    - script@1
     - script@1:
-        inputs:
-        - content: |-
-            #!/usr/bin/env bash
-            echo "Hello World!"
-        title: My script
+    - script@1: {}
 trigger_map:
 - push_branch: tmp
   type: push
