@@ -12,6 +12,9 @@ app:
     opts:
       is_expand: false
   - SLACK_WEBHOOK: https://tempuri.org
+  - COMMA_SEPARATED: 1234,1235
+  - VERSION_NUMBER: 3.20
+  - PORT_NUMBER: 8000:80
 pipelines:
   p1:
     workflows:
