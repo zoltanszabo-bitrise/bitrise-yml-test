@@ -12,8 +12,8 @@ app:
     opts:
       is_expand: false
   - SLACK_WEBHOOK: https://tempuri.org
-  - COMMA_SEPARATED: 1234,1235
-  - VERSION_NUMBER: 3.20
+  - COMMA_SEPARATED: 12341235
+  - VERSION_NUMBER: 3.2
   - PORT_NUMBER: 8000:80
 pipelines:
   p1:
@@ -21,17 +21,19 @@ pipelines:
       tmp: {}
 workflows:
   custom-steplib-steps:
-    steps:
-    - https://github.com/zoltanszabo-bitrise/custom-steplib.git::xcode-test:
-        title: Custom GitHub (user) steplib
-    - https://github.com/zoltan-szabo-bitrise/custom-steplib.git::xcode-test:
-        title: Custom GitHub (org) steplib
-    - https://gitlab.com/zoltanszabo-bitrise/custom-steplib.git::xcode-test:
-        title: Custom GitLab (user) steplib
-    - https://gitlab.com/steplib/custom-steplib.git::xcode-test:
-        title: Custom GitLab (group) steplib
-    - https://bitbucket.org/zoltan-szabo-bitrise/custom-steplib.git::xcode-test:
-        title: Custom BitBucket steplib
+    steps: &ref
+      - https://github.com/zoltanszabo-bitrise/custom-steplib.git::xcode-test:
+          title: Custom GitHub (user) steplib
+      - https://github.com/zoltan-szabo-bitrise/custom-steplib.git::xcode-test:
+          title: Custom GitHub (org) steplib
+      - https://gitlab.com/zoltanszabo-bitrise/custom-steplib.git::xcode-test:
+          title: Custom GitLab (user) steplib
+      - https://gitlab.com/steplib/custom-steplib.git::xcode-test:
+          title: Custom GitLab (group) steplib
+      - https://bitbucket.org/zoltan-szabo-bitrise/custom-steplib.git::xcode-test:
+          title: Custom BitBucket steplib
+  merged:
+    steps: *ref
   git-steps:
     steps:
     - git::https://github.com/bitrise-io/steps-fastlane.git@master:
